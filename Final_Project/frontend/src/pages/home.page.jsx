@@ -22,7 +22,8 @@ const HomePage = () => {
     "Bún đậu mắm tôm",
     "Bún cá",
     "Xôi",
-    "Bánh mỳ",
+    "Bánh mì",
+    "Nhà Hàng"
   ];
   const fetchLatestBlogs = ({ page = 1 }) => {
     axios
