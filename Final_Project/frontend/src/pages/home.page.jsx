@@ -22,8 +22,7 @@ const HomePage = () => {
     "Bún đậu mắm tôm",
     "Bún cá",
     "Xôi",
-    "Bánh mì",
-    "Nhà Hàng"
+    "Bánh mỳ",
   ];
   const fetchLatestBlogs = ({ page = 1 }) => {
     axios
@@ -133,7 +132,9 @@ const HomePage = () => {
               <LoadMoreDataBtn
                 state={blogs}
                 fetchDataFun={
-                  pageState == "trang chủ" ? fetchLatestBlogs : fetchBlogsByCategory
+                  pageState == "trang chủ"
+                    ? fetchLatestBlogs
+                    : fetchBlogsByCategory
                 }
               />
             </>
@@ -172,7 +173,9 @@ const HomePage = () => {
                       onClick={loadBlogByCategory}
                       className={
                         "tag" +
-                        (pageState == category ? " bg-black text-white" : "")
+                        (pageState == category.toLowerCase()
+                          ? " bg-black text-white"
+                          : "")
                       }
                       key={i}
                     >

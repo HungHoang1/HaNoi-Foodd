@@ -10,6 +10,7 @@ import BlogContent from "../components/blog-content.component";
 import CommentsContainer, {
   fetchComments,
 } from "../components/comments.component";
+import MapComponent from "./MapComponent";
 
 export const blogStructure = {
   title: "",
@@ -23,6 +24,11 @@ export const blogStructure = {
 
 export const BlogContext = createContext({});
 
+const extractAddress = (description) => {
+  const match = description?.match(/Địa chỉ: (.+)/);
+  return match ? match[1].trim() : "Không có địa chỉ";
+};
+
 const BlogPage = () => {
   let { blog_id } = useParams();
 
@@ -32,6 +38,7 @@ const BlogPage = () => {
   const [isLikedByUser, setIsLikedByUser] = useState(false);
   const [commentsWrapper, setCommentsWrapper] = useState(false);
   const [totalParentCommentsLoaded, setTotalParentCommentsLoaded] = useState(0);
+  const address = extractAddress(blog.des);
 
   let {
     title,
@@ -153,6 +160,9 @@ const BlogPage = () => {
                 );
               })}
             </div>
+
+            {/* Map viết ở đây */}
+            <MapComponent address={address} />
 
             <BlogInteraction />
 
